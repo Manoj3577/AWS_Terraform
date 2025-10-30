@@ -3,7 +3,7 @@ on: workflow_dispatch
 
 jobs:
   terraform:
-    runs-on: sefl-hosted
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ens/dev
