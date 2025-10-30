@@ -32,5 +32,5 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -out=tfplan.out
 
-      - name: Terraform apply
-        run: terraform apply -auto-approve tfplan.out
+   #   - name: Terraform apply
+   #     run: terraform apply -auto-approve tfplan.out
