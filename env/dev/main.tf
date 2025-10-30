@@ -24,7 +24,7 @@ resource "aws_security_group" "ec2_sg" {
 }
 
 module "ec2" {
-  source = "../../modules/ec2"
+  source = "../../modules/EC2"
 
   ami                    = var.ami
   instance_type          = var.instance_type
