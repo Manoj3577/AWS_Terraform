@@ -1,6 +1,6 @@
 variable "region" { default = "ap-south-1" }  # Mumbai
 variable "name" { default = "dev" }
-variable "ec2-ami" { default = "ami-01760eea5c574eb86" 
+variable "ec2-ami" { default = "ami-01760eea5c574eb86" }
 variable "ec2_instance_type" { default = "t3.micro" }
 varibale "ssh_key_name" {default = "aws_champ-key" }
 variable "subnet_id" { default = "subnet-01ea549bde3bf4c26" }
