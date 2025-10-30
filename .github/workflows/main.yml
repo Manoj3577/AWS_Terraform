@@ -1,1 +1,39 @@
+name: AWS-Terraform CI/CD
+on: workflow_dispatch
 
+jobs:
+  terraform:
+    runs-on: sefl-hosted
+    defaults:
+      run:
+        working-directory: ens/dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Steup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.0
+
+      - name: AWS Configuration
+        uses: aws-actions/confiure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secret.AWS_SECRETE_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: |
+          terraform plan \
+            -out=tfplan.out \
+            -var="aws_region=${{ env.AWS_REGION }}" \
+            -var="aws_access_key=${{ env.AWS_ACCESS_KEY_ID }}" \
+            -var="aws_secret_key=${{ env.AWS_SECRET_ACCESS_KEY }}" \
+            -var="admin_cidr=${{ env.ADMIN_CIDR }}"
